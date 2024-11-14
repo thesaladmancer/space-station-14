@@ -69,17 +69,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/captain.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband]
-  id: ClothingUniformJumpsuitCaptainTurtleneck
-  name: captain's turtleneck
-  description: A regal blue turtleneck finely made with mothroach silk. Fit for a captain.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/capturtleneck.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/capturtleneck.rsi
-
-- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCargo
   name: cargo tech jumpsuit
