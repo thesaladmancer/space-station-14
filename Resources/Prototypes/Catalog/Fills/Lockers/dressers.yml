@@ -12,6 +12,8 @@
       - id: ClothingHandsGlovesCaptain
       - id: ClothingOuterWinterCap
       - id: ClothingNeckCloakCap
+      - id: ClothingUniformJumpsuitCaptainTurtleneck
+      - id: ClothingUniformJumpskirtCaptainTurtleneck
 
 - type: entity
   id: DresserChiefEngineerFilled
