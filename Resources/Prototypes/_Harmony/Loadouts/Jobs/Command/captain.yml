@@ -2,12 +2,12 @@
 - type: loadout
   id: CaptainJumpsuitTurtleneckHarmony
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCaptainTurtleneck
+    jumpsuit: ClothingUniformJumpsuitCaptainTurtleneckHarmony
 
 - type: loadout
   id: CaptainJumpskirtTurtleneckHarmony
   equipment:
-    jumpsuit: ClothingUniformJumpskirtCaptainTurtleneck
+    jumpsuit: ClothingUniformJumpskirtCaptainTurtleneckHarmony
 
 # Outer clothing
 - type: loadout
