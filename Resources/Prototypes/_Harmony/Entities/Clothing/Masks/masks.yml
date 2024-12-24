@@ -14,3 +14,30 @@
   - type: HideLayerClothing
     slots:
     - Snout
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskMaintsSlasher
+  name: cursed jackal mask
+  suffix: SelfUnremovable
+  description: A dark jackal mask with crooked and broken teeth. An ominous aura reeks from its plastic surface. Machete not included.
+  components:
+  - type: Sprite
+    sprite: Clothing/Mask/jackal.rsi
+  - type: Clothing
+    sprite: Clothing/Mask/jackal.rsi
+    stripDelay: 10
+    equipDelay: 5
+  - type: BreathMask
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    slots:
+    - Snout
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: SelfEquipOnly
+  - type: AddMuteClothing
+  - type: SelfUnremovableClothing
+  - type: ClothingSpeedModifier
+    walkModifier: 1.5
+    sprintModifier: 1.25
