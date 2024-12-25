@@ -23,11 +23,24 @@
   description: A dark jackal mask with crooked and broken teeth. An ominous aura reeks from its plastic surface. Machete not included.
   components:
   - type: Sprite
-    sprite: Clothing/Mask/jackal.rsi
+    sprite: _Harmony/Clothing/Mask/maintsslashermask.rsi
+    layers:
+    - state: icon
+    - state: icon-light
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
   - type: Clothing
-    sprite: Clothing/Mask/jackal.rsi
-    stripDelay: 10
+    sprite: _Harmony/Clothing/Mask/maintsslashermask.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-MASK
+      - state: equipped-MASK-light
+        shader: unshaded
+    stripDelay: 5
     equipDelay: 5
+    equippedPrefix: off
+  - type: Appearance
   - type: BreathMask
   - type: IdentityBlocker
   - type: HideLayerClothing
@@ -41,3 +54,17 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.5
     sprintModifier: 1.25
+  - type: PointLight
+    enabled: false
+    radius: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    color: red
+    autoRot: true
+    netsync: false
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      mask:
+      - state: equipped-MASK-light
+        shader: unshaded
+  - type: UnpoweredFlashlight
+    toggleFlashlightSound: /Audio/Effects/Fluids/blood1.ogg
