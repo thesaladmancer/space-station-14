@@ -1,0 +1,22 @@
+- type: entity
+  parent: Katana
+  id: CowboyKatana
+  name: cowboy katana
+  description: A curved plastitanium sword forged in the heat of Old Mojave.
+  components:
+  - type: Tag
+    tags:
+    - Katana
+    - CowboyKatana
+  - type: Sprite
+    sprite: _Harmony/Objects/Weapons/Melee/cowboykatana.rsi
+  - type: Item
+    sprite: _Harmony/Objects/Weapons/Melee/cowboykatana.rsi
+  - type: MeleeWeapon
+    attackRate: 1.25
+    damage:
+      types:
+        Slash: 20
+  - type: Reflect
+    reflectProb: .25
+    spread: 120

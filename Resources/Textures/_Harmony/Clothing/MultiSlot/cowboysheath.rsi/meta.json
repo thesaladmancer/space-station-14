@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "made by thesaladmancer (github)",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+          "name": "sheath"
+      },
+      {
+          "name": "sheath-katana"
+      },
+      {
+          "name": "equipped-BELT",
+          "directions": 4
+      },
+      {
+          "name": "sheath-katana-equipped-BELT",
+          "directions": 4
+      },
+      {
+          "name": "equipped-BACK",
+          "directions": 4
+      },
+      {
+          "name": "sheath-katana-equipped-BACK",
+          "directions": 4
+      },
+      {
+          "name": "equipped-SUITSTORAGE",
+          "directions": 4
+      },
+      {
+          "name": "sheath-katana-equipped-SUITSTORAGE",
+          "directions": 4
+      }
+    ]
+  }

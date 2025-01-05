@@ -3,3 +3,6 @@
   id: ClothingShoesGaloshes
 - type: Tag
   id: ClothingShoesDuckyGaloshes
+
+- type: Tag
+  id: CowboyKatana # Used for Cowboy Katana

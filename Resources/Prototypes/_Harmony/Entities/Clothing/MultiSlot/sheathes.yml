@@ -1,0 +1,32 @@
+- type: entity
+  parent: [ ClothingBeltBase, ClothingSlotBase ]
+  id: ClothingBeltSheathCowboy
+  name: cowboy katana sheath
+  description: A durable durathread sheath fit for a curved sword.
+  components:
+  - type: Sprite
+    sprite: _Harmony/Clothing/MultiSlot/cowboysheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _Harmony/Clothing/MultiSlot/cowboysheath.rsi
+    slots: belt # TO DO: Belt, Back, and SuitStorage slots
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Katana
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg # TO DO: Get a super cool samurai sheath "shhhhiing!!" sound
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CowboyKatana
+  - type: ItemMapper
+    mapLayers:
+      sheath-katana:
+        whitelist:
+          tags:
+          - CowboyKatana
+  - type: Appearance
