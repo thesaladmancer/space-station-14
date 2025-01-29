@@ -22,11 +22,11 @@
           "directions": 4
       },
       {
-          "name": "equipped-BACK",
+          "name": "equipped-BACKPACK",
           "directions": 4
       },
       {
-          "name": "sheath-katana-equipped-BACK",
+          "name": "sheath-katana-equipped-BACKPACK",
           "directions": 4
       },
       {

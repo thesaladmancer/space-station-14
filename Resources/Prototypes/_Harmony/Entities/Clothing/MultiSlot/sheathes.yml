@@ -9,7 +9,10 @@
     state: sheath
   - type: Clothing
     sprite: _Harmony/Clothing/MultiSlot/cowboysheath.rsi
-    slots: belt # TO DO: Belt, Back, and SuitStorage slots
+    slots:
+    - BELT
+    - BACK
+    - SUITSTORAGE
   - type: Item
     size: Ginormous
   - type: ItemSlots
