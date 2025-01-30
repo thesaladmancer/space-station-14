@@ -6,13 +6,29 @@
     weight: 3
     duration: null
     earliestStart: 30
-  # I'm not sure if I should add a reoccurrence delay yet
     minimumPlayers: 35
-  # - type: AntagLoadProfileRule
-  # No objectives yet
+    maxOccurrences: 1
+  - type: AntagLoadProfileRule
   - type: AntagObjectives
     objectives:
     - CowboySurviveObjective
   - type: AntagSelection
     definitions:
-    - spawnerPrototype:
+    - spawnerPrototype: SpawnPointCowboy
+      min: 2
+      max: 2
+      pickPlayer: false
+      startingGear: CowboyGear
+      roleLoadout:
+      - RoleSurvivalSyndicate
+      components:
+      - type: RandomMetadata
+        nameSegments:
+        - SyndicateNamesPrefix # TODO
+        - SyndicateNamesNormal # TODO
+      - type: NpcFactionMember
+        factions:
+        - Syndicate # TODO
+      mindRoles:
+      - MindRoleCowboy
+  - type: SpaceSpawnRule

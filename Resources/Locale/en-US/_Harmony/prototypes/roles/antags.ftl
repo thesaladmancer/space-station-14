@@ -1,2 +1,2 @@
 roles-antag-cowboy-name = Cowboy
-roles-antag-cowboy-objective = Eliminate your rival and survive.
+roles-antag-cowboy-objective = Kill your rival and survive.
