@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseGameRule
+  id: CowboySpawn
+  components:
+  - type: StationEvent
+    weight: 3
+    duration: null
+    earliestStart: 30
+  # I'm not sure if I should add a reoccurrence delay yet
+    minimumPlayers: 35
+  # - type: AntagLoadProfileRule
+  # No objectives yet
+  - type: AntagObjectives
+    objectives:
+    - CowboySurviveObjective
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype:

@@ -1,0 +1,12 @@
+- type: antag
+  id: Cowboy
+  name: roles-antag-cowboy-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-cowboy-objective
+  guides: [ Cowboy ]
+
+# - type: startingGear
+#   id: CowboyGear
+#   equipment:
+#     jumpsuit: Clothing
