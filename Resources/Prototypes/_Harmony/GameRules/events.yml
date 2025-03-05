@@ -31,4 +31,6 @@
         - Syndicate # TODO
       mindRoles:
       - MindRoleCowboy
-  - type: SpaceSpawnRule
+  - type: RuleGrids
+  - type: LoadMapsRule
+    mapPath: /Maps/Shuttles/ShuttleEvent/striker.yml

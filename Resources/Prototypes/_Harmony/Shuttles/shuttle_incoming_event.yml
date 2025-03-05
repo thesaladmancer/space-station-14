@@ -12,6 +12,12 @@
   path: /Maps/_Harmony/Shuttles/ShuttleEvent/syndicatereinforcement.yml
   copies: 1
 
+# TODO - Actually make the damn shuttle LOL
+# - type: preloadedGrid
+#   id: ShuttleCowboy
+#   path: /Maps/_Harmony/Shuttles/ShuttleEvent/cowboy.yml
+#   copies: 2
+
 # Harmony ERT Shuttles
 
 - type: preloadedGrid
