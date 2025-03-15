@@ -6,5 +6,10 @@ namespace Content.Server._Harmony.GameTicking.Rules;
 
 public sealed class CowboyRuleSystem : GameRuleSystem<CowboyRuleComponent>
 {
+    public override void Initialize()
+    {
+        base.Initialize();
 
+
+    }
 }
