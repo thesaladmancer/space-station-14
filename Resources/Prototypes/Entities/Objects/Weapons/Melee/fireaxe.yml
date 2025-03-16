@@ -41,7 +41,9 @@
   - type: Tool
     qualities:
       - Prying
+      - Axing # Harmony specific change for allowing the base fireaxe to rip up plating
   - type: ToolTileCompatible
+    delay: 5 # Harmony specific change
   - type: Prying
   - type: UseDelay
     delay: 1
@@ -68,3 +70,6 @@
     quickEquip: false
     slots:
     - back
+  - type: Tool # Harmony specific addition, to prevent the Syndicate fire axe from ripping up plating
+    qualities:
+    - Prying

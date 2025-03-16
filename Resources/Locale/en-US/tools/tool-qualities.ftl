@@ -1,6 +1,10 @@
 tool-quality-anchoring-name = Anchoring
 tool-quality-anchoring-tool-name = Wrench
 
+# Harmony specific change
+tool-quality-axing-name = Axing
+tool-quality-axing-tool-name = Fireaxe
+
 tool-quality-prying-name = Prying
 tool-quality-prying-tool-name = Crowbar
 
