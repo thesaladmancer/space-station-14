@@ -13,7 +13,8 @@
     # If you update this also update the bulldog's size.
     size: Large
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+    # sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+    sprite: _Harmony/Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
     quickEquip: false
     slots:
     - Back
@@ -108,12 +109,14 @@
   description: An immortal classic. Uses .50 shotgun shells.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+    # sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+    sprite: _Harmony/Objects/Weapons/Guns/Shotguns/db_shotgun_icon.rsi # Harmony resprite
   - type: Item
     size: Normal
     shape:
     - 0,0,4,0
-    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+    # sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+    sprite: _Harmony/Objects/Weapons/Guns/Shotguns/db_shotgun.rsi # Harmony resprite
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 3
@@ -186,12 +189,15 @@
   description: Groovy! Uses .50 shotgun shells.
   components: # needs to be super inaccurate because you don't need to wield it
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
+    # sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
+    sprite: _Harmony/Objects/Weapons/Guns/Shotguns/db_sawn_icon.rsi # Harmony resprite
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
+    # sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
+    sprite: _Harmony/Objects/Weapons/Guns/Shotguns/db_sawn.rsi # Harmony resprite
   - type: Item
     size: Small
-    sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
+    # sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
+    sprite: _Harmony/Objects/Weapons/Guns/Shotguns/db_sawn.rsi # Harmony resprite
   - type: Gun
     fireRate: 3
   - type: BallisticAmmoProvider
