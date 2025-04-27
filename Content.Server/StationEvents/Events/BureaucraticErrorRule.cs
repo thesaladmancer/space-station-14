@@ -29,6 +29,21 @@ public sealed class BureaucraticErrorRule : StationEventSystem<BureaucraticError
         if (jobList.Count == 0)
             return;
 
+        // Start of Harmony change of Bureaucratic Error event
+        // - Changed for the sake of people generally not liking when the job they want to play loses all slots within 10 minutes.
+        // - Removed the ability for this event to reduce slots from a job, and replaced with picking a random number of jobs to set to unlimited
+        var num = RobustRandom.Next(component.MinimumJobs, component.MaximumJobs); // Get the number of jobs to become unlimited
+
+        for (var i = 0; i < num; i++)
+        {
+            var chosenJob = RobustRandom.PickAndTake(jobList);
+            if (_stationJobs.IsJobUnlimited(chosenStation.Value, chosenJob))
+                continue;
+
+            _stationJobs.MakeJobUnlimited(chosenStation.Value, chosenJob);
+        }
+
+        /* Start of Harmony change. Removed to allow for Harmony specific Bureaucratic Error behavior.
         // Low chance to completely change up the late-join landscape by closing all positions except infinite slots.
         // Lower chance than the /tg/ equivalent of this event.
         if (RobustRandom.Prob(0.25f))
@@ -57,5 +72,6 @@ public sealed class BureaucraticErrorRule : StationEventSystem<BureaucraticError
                 _stationJobs.TryAdjustJobSlot(chosenStation.Value, chosenJob, RobustRandom.Next(-3, 6), clamp: true);
             }
         }
+        End of Harmony change of Bureaucratic Error event */
     }
 }

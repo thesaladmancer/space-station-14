@@ -134,6 +134,10 @@
   - type: BureaucraticErrorRule
     ignoredJobs:
     - StationAi
+    # Begin Harmony specific bureaucratic error values
+    minimumJobs: 1
+    maximumJobs: 4
+    # End Harmony specific bureaucratic error values
 
 - type: entity
   id: ClericalError

@@ -12,4 +12,18 @@ public sealed partial class BureaucraticErrorRuleComponent : Component
     /// </summary>
     [DataField]
     public List<ProtoId<JobPrototype>> IgnoredJobs = new();
+
+    // Start of Harmony change of Bureaucratic Error event
+    /// <summary>
+    /// The minimum number of jobs that can be set to unlimited slots.
+    /// </summary>
+    [DataField]
+    public int MinimumJobs = 1;
+
+    /// <summary>
+    /// The maximum number of jobs that can be set to unlimited slots.
+    /// </summary>
+    [DataField]
+    public int MaximumJobs = 4;
+    // End of Harmony change of Bureaucratic Error event
 }
