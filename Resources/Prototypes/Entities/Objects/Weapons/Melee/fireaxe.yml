@@ -70,6 +70,8 @@
     quickEquip: false
     slots:
     - back
-  - type: Tool # Harmony specific addition, to prevent the Syndicate fire axe from ripping up plating
+  # Harmony specific addition, to prevent the Syndicate fire axe from ripping up plating
+  - type: Tool
     qualities:
     - Prying
+  # End of Harmony specific addition
