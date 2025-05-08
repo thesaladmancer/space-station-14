@@ -1,0 +1,24 @@
+- type: entity
+  name: drug bolt
+  id: ProjectileDrugBoltHarmony
+  parent: BaseBullet
+  description: Omnizine? Amatoxin? Stand still and find out!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: spell
+      color: '#00FF00'
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 20
+  - type: Injector
+    injectOnly: true
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 20
+    solution: injector
+  - type: RandomFillSolution
+    solution: injector
+    weightedRandomId: RandomFillStrangePill
