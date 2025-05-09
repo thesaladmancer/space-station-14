@@ -10,6 +10,10 @@
     layers:
     - state: spell
       color: '#00FF00'
+  - type: Projectile
+    damage:
+      types:
+        Heat: 5
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -21,4 +25,140 @@
     solution: injector
   - type: RandomFillSolution
     solution: injector
-    weightedRandomId: RandomFillStrangePill
+    weightedRandomId: RandomFillNarcomancyHarmony
+
+- type: weightedRandomFillSolution
+  id: RandomFillNarcomancyHarmony
+  fills:
+  # Very Good - weight: 15
+    - quantity: 10
+      weight: 5
+      reagents:
+      - Omnizine
+      - Ichor
+      - Stimulants
+      - Saline
+    - quantity: 15
+      weight: 5
+      reagents:
+      - PolypyryliumOligomers
+      - Barozine
+    - quantity: 20
+      weight: 5
+      reagents:
+      - DoctorsDelight
+      - Cryoxadone
+  # Good - weight: 15
+    - quantity: 10
+      weight: 5
+      reagents:
+      - Charcoal
+      - AmbuzolPlus
+      - Vitamin
+      - RobustHarvest
+      - DexalinPlus
+      - TranexamicAcid
+    - quantity: 15
+      weight: 5
+      reagents:
+      - Tricordrazine
+      - Siderlac
+      - Bruizine
+      - Puncturase
+      - Lacerinol
+      - Dylovene
+      - Dermaline
+      - Epinephrine
+      - Ethylredoxrazine
+    - quantity: 20
+      weight: 5
+      reagents:
+      - HolyWater
+      - Water
+      - Psicodine
+  # Neutral - weight: 20
+    - quantity: 10
+      weight: 5
+      reagents:
+      - Ambuzol
+      - Arithrazine
+      - Fluorosurfactant
+      - Theobromine
+    - quantity: 15
+      weight: 5
+      reagents:
+      - Cryptobiolin
+      - Haloperidol
+      - Inaprovaline
+    - quantity: 20
+      weight: 10
+      reagents:
+      - THC
+      - SpaceDrugs
+      - Mayo
+      - Desoxyephedrine
+      - Ephedrine
+      - SodiumPolyacrylate
+      - Potassium
+      - WeedKiller
+      - CapsaicinOil
+      - FrostOil
+      - Fat # I can't believe it's not Lard!
+      - Blood
+      - InsectBlood
+      - Egg
+      - JuiceThatMakesYouWeh
+      - JuiceThatMakesYouHew
+      - Kelotane
+  # Bad - weight: 20
+    - quantity: 10
+      weight: 7.5
+      reagents:
+      - Licoxide
+      - GreyMatter
+      - Ipecac
+      - Impedrezene
+      - Napalm
+      - HeartbreakerToxin
+      - Uranium
+    - quantity: 15
+      weight: 7.5
+      reagents:
+      - Mercury
+      - Phlogiston
+      - Leporazine
+      - Razorium
+      - Ethanol
+      - BuzzochloricBees
+    - quantity: 20
+      weight: 5
+      reagents:
+      - Artifexium
+      - SpaceGlue
+      - MuteToxin
+      - Pax
+  # Very Bad - weight: 29
+    - quantity: 10
+      weight: 10
+      reagents:
+      - Lexorin
+      - Nocturine
+      - Toxin
+      - Lead
+    - quantity: 15
+      weight: 10
+      reagents:
+      - Tazinide
+      - PolytrinicAcid
+      - Amatoxin
+      - Mechanotoxin
+    - quantity: 20
+      weight: 9
+      reagents:
+      - FluorosulfuricAcid
+      - Carpotoxin
+  # Romerol - weight: 1
+    - quantity: 5
+      weight: 1
+      reagents:
+      - Romerol # Probably fine since Wizard is a major antagonist, though should be VERY rare
