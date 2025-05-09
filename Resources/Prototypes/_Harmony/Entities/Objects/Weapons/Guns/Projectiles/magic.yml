@@ -10,6 +10,13 @@
     layers:
     - state: spell
       color: '#00FF00'
+      shader: unshaded
+  - type: PointLight
+    color: "#00FF00"
+    radius: 2.0
+    energy: 5.0
+  - type: RgbLightController
+    cycleRate: 1.0
   - type: Projectile
     damage:
       types:
