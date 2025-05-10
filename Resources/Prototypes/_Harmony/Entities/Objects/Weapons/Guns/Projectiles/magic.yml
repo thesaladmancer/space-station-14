@@ -79,7 +79,7 @@
     - quantity: 20
       weight: 5
       reagents:
-      - HolyWater
+      - Holywater
       - Water
       - Psicodine
   # Neutral - weight: 20
@@ -162,7 +162,7 @@
       weight: 9
       reagents:
       - FluorosulfuricAcid
-      - Carpotoxin
+      - CarpoToxin
   # Romerol - weight: 1
     - quantity: 5
       weight: 1
