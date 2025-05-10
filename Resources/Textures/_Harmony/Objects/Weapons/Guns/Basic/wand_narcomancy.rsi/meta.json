@@ -27,7 +27,7 @@
         },
         {
             "name": "inhand-right",
-            "right": 4
+            "directions": 4
         }
     ]
 }
