@@ -1,7 +1,7 @@
 - type: entity
-  name: wand of narcomancy
-  id: WeaponWandNarcomancyHarmony
   parent: WeaponWandBase
+  id: WeaponWandNarcomancyHarmony
+  name: wand of narcomancy
   description: Even wizards need their fix.
   components:
   - type: Sprite

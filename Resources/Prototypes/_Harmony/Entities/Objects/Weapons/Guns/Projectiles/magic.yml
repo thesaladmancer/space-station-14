@@ -1,9 +1,9 @@
 - type: entity
-  name: drug bolt
-  id: ProjectileDrugBoltHarmony
   parent: BaseBullet
-  description: Omnizine? Amatoxin? Stand still and find out!
+  id: ProjectileDrugBoltHarmony
   categories: [ HideSpawnMenu ]
+  name: drug bolt
+  description: Omnizine? Amatoxin? Stand still and find out!
   components:
   - type: Sprite
     sprite: Objects/Specific/Chemistry/pills.rsi
