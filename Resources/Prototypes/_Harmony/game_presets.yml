@@ -25,3 +25,17 @@
   supportedMaps: DeathMatchPROMODMapPool
   rules:
     - DeathMatchPROMOD
+
+- type: gamePreset
+  id: TiderRoyale
+  alias:
+  - tiderRoyale
+  name: tider-royale-title
+  description: tider-royale-description
+  maxPlayers: 15
+  showInVote: true
+  rules:
+  - TiderRoyaleRule
+  - BasicStationEventScheduler
+  - KesslerSyndromeScheduler
+  - BasicRoundstartVariation

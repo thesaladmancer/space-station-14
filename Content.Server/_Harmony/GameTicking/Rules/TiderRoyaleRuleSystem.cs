@@ -1,0 +1,152 @@
+using System.Linq;
+using Content.Server._Harmony.GameTicking.Rules.Components;
+using Content.Server.GameTicking;
+using Content.Server.GameTicking.Rules;
+using Content.Server.RoundEnd;
+using Content.Server.Station.Systems;
+using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs;
+using Content.Server.TiderRoyale;
+using Content.Shared.CombatMode.Pacification;
+using Robust.Shared.Timing;
+using Content.Server.Station.Components;
+using Content.Server.AlertLevel;
+using Content.Server.Chat.Systems;
+using Content.Server.KillTracking;
+
+namespace Content.Server._Harmony.GameTicking.Rules;
+
+/// <summary>
+/// Manages <see cref="TiderRoyaleRuleComponent"/>
+/// </summary>
+public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleComponent>
+{
+    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
+
+        SubscribeLocalEvent<TiderComponent, ComponentRemove>(OnComponentRemove);
+        SubscribeLocalEvent<TiderComponent, MobStateChangedEvent>(OnMobStateChanged);
+    }
+
+    protected override void Started(EntityUid uid, TiderRoyaleRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    {
+        base.Started(uid, component, gameRule, args);
+
+        if (!TryGetRandomStation(out var station, HasComp<StationJobsComponent>))
+            return;
+
+        var jobList = _stationJobs.GetJobs(station.Value).Keys.ToList();
+
+        if (jobList.Count == 0)
+            return;
+
+        _stationJobs.MakeJobUnlimited(station.Value, component.Job);
+        jobList.Remove(component.Job);
+
+        foreach (var job in jobList)
+            _stationJobs.TrySetJobSlot(station.Value, job, 0);
+
+        component.GracePeriodStartedTime = _gameTiming.CurTime;
+    }
+
+    private void OnSpawnComplete(PlayerSpawnCompleteEvent ev)
+    {
+        var query = EntityQueryEnumerator<TiderRoyaleRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var tr, out var rule))
+        {
+            if (!GameTicker.IsGameRuleActive(uid, rule))
+                continue;
+
+            EnsureComp<TiderComponent>(ev.Mob);
+
+            if (!tr.IsGracePeriodOver)
+            {
+                EnsureComp<PacifiedComponent>(ev.Mob);
+            }
+        }
+    }
+
+    private void OnComponentRemove(Entity<TiderComponent> ent, ref ComponentRemove args)
+    {
+        CheckRoundShouldEnd();
+    }
+
+    private void OnMobStateChanged(Entity<TiderComponent> ent, ref MobStateChangedEvent args)
+    {
+        CheckRoundShouldEnd();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<TiderRoyaleRuleComponent>();
+        while (query.MoveNext(out var uid, out var tr))
+        {
+            if (_gameTiming.CurTime < tr.GracePeriodStartedTime + tr.GracePeriod)
+                continue;
+
+            if (!tr.IsGracePeriodOver)
+            {
+                var message = Loc.GetString("tider-royale-announce-grace-period-over");
+                var sender = Loc.GetString("tider-royale-announce-sender");
+                var sound = tr.GracePeriodEndSound;
+                var color = Color.Red;
+
+                _chat.DispatchGlobalAnnouncement(message, sender, true, sound, color);
+
+                if (TryGetRandomStation(out var station) && _alertLevel.GetLevel(station.Value) != tr.AlertLevelOnGracePeriodEnd)
+                {
+                    _alertLevel.SetLevel(station.Value, tr.AlertLevelOnGracePeriodEnd, false, false, true);
+                }
+
+                var tiders = EntityQueryEnumerator<TiderComponent, PacifiedComponent>();
+                while (tiders.MoveNext(out var tideruid, out var tider, out _))
+                {
+                    if (HasComp<PacifiedComponent>(tideruid))
+                        RemComp<PacifiedComponent>(tideruid);
+                }
+
+                tr.IsGracePeriodOver = true;
+            }
+        }
+    }
+
+    private void CheckRoundShouldEnd()
+    {
+        var query = QueryActiveRules();
+        while (query.MoveNext(out var uid, out _, out var tiderRoyale, out _))
+        {
+            CheckRoundShouldEnd((uid, tiderRoyale));
+        }
+    }
+
+    private void CheckRoundShouldEnd(Entity<TiderRoyaleRuleComponent> ent)
+    {
+        var players = EntityQuery<TiderComponent, MobStateComponent>(true);
+        var playersAlive = players.Where(player => player.Item2.CurrentState == MobState.Alive || player.Item2.CurrentState == MobState.Critical);
+
+        if (playersAlive.Count() > 1)
+            return; // We are NOT done yet.
+        else
+        {
+            _roundEnd.EndRound(ent.Comp.RestartDelay);
+        }
+    }
+
+    protected override void AppendRoundEndText(EntityUid uid, TiderRoyaleRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
+    {
+
+    }
+}
