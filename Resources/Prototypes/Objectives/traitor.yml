@@ -98,7 +98,7 @@
   description: Do it however you like, just make sure they don't get off the station.
   components:
   - type: Objective
-    difficulty: 1.75
+    difficulty: 2.25 # Harmony 1.75 -> 2.25
     unique: false
   - type: TargetObjective
     title: objective-condition-maroon-person-title
@@ -206,20 +206,24 @@
   - type: StealCondition
     stealGroup: HandTeleporter
 
-## hos
+## Harmony - warden
 
 - type: entity
   parent: BaseTraitorStealObjective
   id: EnergyShotgunStealObjective
   components:
   - type: Objective
-    # HoS will have this on them a lot of the time so..
+    # Harmony - The Warden will have this on them a lot of the time so..
     difficulty: 3
   - type: NotJobRequirement
-    job: HeadOfSecurity
+# Start of Harmony Change: Updates owner of the energy shotgun Warden
+#    job: HeadOfSecurity
+    job: Warden
   - type: StealCondition
     stealGroup: WeaponEnergyShotgun
-    owner: job-name-hos
+#    owner: job-name-hos
+    owner: job-name-warden
+# End of Harmony Change
 
 ## ce
 
@@ -243,6 +247,16 @@
     job: Quartermaster
   - type: StealCondition
     stealGroup: BoxFolderQmClipboard
+    owner: job-name-qm
+
+- type: entity
+  parent: BaseTraitorStealObjective
+  id: KnuckleDustersStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Quartermaster
+  - type: StealCondition
+    stealGroup: ClothingHandsKnuckleDustersQM
     owner: job-name-qm
 
 ## hop
@@ -307,3 +321,9 @@
   - type: StealCondition
     stealGroup: NukeDisk
     owner: objective-condition-steal-station
+# Start harmony change
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - EscapeShuttleCondition
+# End harmony change
