@@ -30,12 +30,25 @@
   id: TiderRoyale
   alias:
   - tiderRoyale
+  - greytideWorldwide
   name: tider-royale-title
   description: tider-royale-description
-  maxPlayers: 15
-  showInVote: true
+  showInVote: false
   rules:
   - TiderRoyaleRule
+  - BasicStationEventScheduler
+  - KesslerSyndromeScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: MimeRoyale
+  alias:
+  - mimeRoyale
+  name: mime-royale-title
+  description: tider-royale-description
+  showInVote: false
+  rules:
+  - MimeRoyaleRule
   - BasicStationEventScheduler
   - KesslerSyndromeScheduler
   - BasicRoundstartVariation

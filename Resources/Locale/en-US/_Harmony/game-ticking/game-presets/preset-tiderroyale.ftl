@@ -1,6 +1,8 @@
 tider-royale-title = Tider Royale
 tider-royale-description = Become the last one standing.
 
+mime-royale-title = Mime Royale
+
 tider-royale-announce-sender = Gorlex Marauders
 tider-royale-announce-grace-period-over = Your contractually obligated grace period is now OVER! You may now begin fighting!
 
@@ -57,4 +59,3 @@ tider-royale-death-callout-49 = [bold]{$victim}[/bold] emote failed!
 tider-royale-death-callout-50 = [bold]{$victim}[/bold] cuckled!
 
 tider-royale-alive-count = There are [bold]{$aliveCount}[/bold] contestants remaining.
-

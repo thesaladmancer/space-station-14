@@ -88,6 +88,13 @@
   - type: TiderRoyaleRule
     job: Passenger
 
+- type: entity
+  parent: TiderRoyaleRule
+  id: MimeRoyaleRule
+  components:
+  - type: TiderRoyaleRule
+    job: Mime
+
 # DeathMatch PROMOD Gear
 
 - type: startingGear
