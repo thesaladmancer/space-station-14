@@ -15,6 +15,9 @@ using Content.Server.Station.Components;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Server.Mind;
+using Robust.Shared.Player;
+using Robust.Shared.Random;
+using Robust.Server.Audio;
 
 namespace Content.Server._Harmony.GameTicking.Rules;
 
@@ -23,6 +26,7 @@ namespace Content.Server._Harmony.GameTicking.Rules;
 /// </summary>
 public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleComponent>
 {
+    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly MindSystem _mind = default!;
@@ -30,6 +34,7 @@ public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleCompon
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -62,12 +67,9 @@ public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleCompon
 
     private void OnBeforeSpawn(PlayerBeforeSpawnEvent ev)
     {
-        var query = EntityQueryEnumerator<TiderRoyaleRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var tr, out var rule))
+        var query = QueryActiveRules();
+        while (query.MoveNext(out _, out var tr, out _))
         {
-            if (!GameTicker.IsGameRuleActive(uid, rule))
-                continue;
-
             var newMind = _mind.CreateMind(ev.Player.UserId);
             _mind.SetUserId(newMind, ev.Player.UserId);
 
@@ -88,19 +90,46 @@ public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleCompon
 
     private void OnComponentRemove(Entity<TiderComponent> ent, ref ComponentRemove args)
     {
-        CheckRoundShouldEnd();
+        var query = QueryActiveRules();
+        while (query.MoveNext(out var uid, out var tr, out _))
+        {
+            CheckRoundShouldEnd(tr);
+        }
     }
 
     private void OnMobStateChanged(Entity<TiderComponent> ent, ref MobStateChangedEvent args)
     {
-        CheckRoundShouldEnd();
+        var query = QueryActiveRules();
+        while (query.MoveNext(out var uid, out var tr, out _))
+        {
+            // This is probably reasonable enough logic to assume that a player has died. Probably.
+            if ((args.OldMobState == MobState.Alive || args.OldMobState == MobState.Critical) && args.NewMobState == MobState.Dead)
+            {
+                var callout = Loc.GetString($"{tr.DeathCalloutTextPrefix}{_random.Next(tr.DeathCalloutTextAmount)}",
+                    ("victim", MetaData(ent).EntityName));
+
+                var aliveCount = GetAlivePlayerCount();
+                var aliveCountText = Loc.GetString($"{tr.AliveCountText}",
+                    ("aliveCount", aliveCount));
+
+                var sender = Loc.GetString(tr.AnnouncementSender);
+                var color = Color.Red;
+
+                _chat.DispatchGlobalAnnouncement($"{callout} {aliveCountText}", sender, false, null, color);
+
+                var sound = tr.DeathCalloutSound;
+                _audio.PlayGlobal(sound, Filter.Broadcast(), true);
+            }
+
+            CheckRoundShouldEnd(tr);
+        }
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<TiderRoyaleRuleComponent, GameRuleComponent>();
+        var query = QueryActiveRules();
         while (query.MoveNext(out var uid, out var tr, out var rule))
         {
             if (_gameTiming.CurTime <= tr.GracePeriodStartedTime + tr.GracePeriod)
@@ -108,8 +137,8 @@ public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleCompon
 
             if (!tr.IsGracePeriodOver)
             {
-                var message = Loc.GetString("tider-royale-announce-grace-period-over");
-                var sender = Loc.GetString("tider-royale-announce-sender");
+                var message = Loc.GetString(tr.GracePeriodEndAnnouncementText);
+                var sender = Loc.GetString(tr.AnnouncementSender);
                 var sound = tr.GracePeriodEndSound;
                 var color = Color.Red;
 
@@ -132,26 +161,27 @@ public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleCompon
         }
     }
 
-    private void CheckRoundShouldEnd()
+    private void CheckRoundShouldEnd(TiderRoyaleRuleComponent tr)
     {
-        var query = QueryActiveRules();
-        while (query.MoveNext(out var uid, out _, out var tiderRoyale, out _))
+        var playersAlive = GetAlivePlayerCount();
+
+        if (playersAlive > 1)
+            return;
+        else
         {
-            CheckRoundShouldEnd((uid, tiderRoyale));
+            _roundEnd.EndRound(tr.RestartDelay);
         }
     }
 
-    private void CheckRoundShouldEnd(Entity<TiderRoyaleRuleComponent> ent)
+    private int GetAlivePlayerCount()
     {
         var players = EntityQuery<TiderComponent, MobStateComponent>(true);
-        var playersAlive = players.Where(player => player.Item2.CurrentState == MobState.Alive || player.Item2.CurrentState == MobState.Critical);
+        var playersAlive = players.Where(player =>
+            player.Item2.CurrentState == MobState.Alive ||
+            player.Item2.CurrentState == MobState.Critical
+        );
 
-        if (playersAlive.Count() > 1)
-            return; // We are NOT done yet.
-        else
-        {
-            _roundEnd.EndRound(ent.Comp.RestartDelay);
-        }
+        return playersAlive.Count();
     }
 
     protected override void AppendRoundEndText(EntityUid uid, TiderRoyaleRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)

@@ -87,6 +87,7 @@
   components:
   - type: TiderRoyaleRule
     job: Passenger
+    gracePeriod: 1 # Testing
 
 - type: entity
   parent: TiderRoyaleRule
