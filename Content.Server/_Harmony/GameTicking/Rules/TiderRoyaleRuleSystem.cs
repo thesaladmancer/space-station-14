@@ -36,7 +36,6 @@ public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleCompon
         base.Initialize();
 
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
 
         SubscribeLocalEvent<TiderComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<TiderComponent, MobStateChangedEvent>(OnMobStateChanged);
@@ -58,6 +57,7 @@ public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleCompon
             _stationJobs.MakeJobUnlimited(station.Value, job);
 
         component.GracePeriodStartedTime = _gameTiming.CurTime;
+        Log.Debug("Tider Royale Rule component started.");
     }
 
     private void OnBeforeSpawn(PlayerBeforeSpawnEvent ev)
@@ -78,25 +78,11 @@ public sealed class TiderRoyaleRuleSystem : GameRuleSystem<TiderRoyaleRuleCompon
 
             EnsureComp<TiderComponent>(mob);
 
+            if (!tr.IsGracePeriodOver)
+                EnsureComp<PacifiedComponent>(mob);
+
             ev.Handled = true;
             break;
-        }
-    }
-
-    private void OnSpawnComplete(PlayerSpawnCompleteEvent ev)
-    {
-        var query = EntityQueryEnumerator<TiderRoyaleRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var tr, out var rule))
-        {
-            if (!GameTicker.IsGameRuleActive(uid, rule))
-                continue;
-
-            EnsureComp<TiderComponent>(ev.Mob);
-
-            if (!tr.IsGracePeriodOver)
-            {
-                EnsureComp<PacifiedComponent>(ev.Mob);
-            }
         }
     }
 

@@ -93,7 +93,7 @@
   id: MimeRoyaleRule
   components:
   - type: TiderRoyaleRule
-    job: Mime
+    job: Mime # This is for testing to ensure other jobs function
 
 # DeathMatch PROMOD Gear
 
