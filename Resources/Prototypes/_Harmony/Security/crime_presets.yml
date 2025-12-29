@@ -1,0 +1,65 @@
+# Minor
+
+- type: crimePreset
+  id: CrimePresetBaseMinor
+  abstract: true
+  duration: 1m
+
+- type: crimePreset
+  parent: CrimePresetBaseMinor
+  id: CrimePresetMinorAnimalCruelty
+  name: crime-preset-name-animal-cruelty
+  description: crime-preset-description-animal-cruelty
+
+# Moderate
+
+- type: crimePreset
+  id: CrimePresetBaseModerate
+  abstract: true
+  duration: 5m
+
+- type: crimePreset
+  parent: CrimePresetBaseModerate
+  id: CrimePresetModerateFailureComply
+  name: crime-preset-name-failure-comply
+  description: crime-preset-description-failure-comply
+
+# Major
+
+- type: crimePreset
+  id: CrimePresetBaseMajor
+  abstract: true
+  duration: 10m
+
+- type: crimePreset
+  parent: CrimePresetBaseMajor
+  id: CrimePresetMajorBreachArrest
+  name: crime-preset-name-breach-arrest
+  description: crime-preset-description-breach-arrest
+
+# Extreme
+
+- type: crimePreset
+  id: CrimePresetBaseExtreme
+  abstract: true
+  duration: 15m
+
+- type: crimePreset
+  parent: CrimePresetBaseExtreme
+  id: CrimePresetExtremeBreachCustody
+  name: crime-preset-name-breach-custody
+  description: crime-preset-description-breach-custody
+
+# Capital
+
+- type: crimePreset
+  id: CrimePresetBaseCapital
+  abstract: true
+  duration: 20m
+  permanent: true
+
+- type: crimePreset
+  parent: CrimePresetBaseCapital
+  id: CrimePresetExtremeRefusalMindShield
+  name: crime-preset-name-refusal-mind-shield
+  description: crime-preset-description-refusal-mind-shield
