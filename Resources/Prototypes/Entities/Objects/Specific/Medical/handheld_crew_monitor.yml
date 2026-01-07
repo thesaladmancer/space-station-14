@@ -1,7 +1,10 @@
 - type: entity
   name: handheld crew monitor
   categories: [ DoNotMap ]
-  parent: [ BaseHandheldComputer, BaseGrandTheftContraband ]
+# Harmony Change Start - Gives Handheld Crew Monitor to Paramedic instead of CMO
+  # parent: [ BaseHandheldComputer, BaseGrandTheftContraband ]
+  parent: [ BaseHandheldComputer, BaseMedicalContraband ]
+# Harmony Change End
   # CMO-only bud, don't add more.
   id: HandheldCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors.
@@ -26,11 +29,13 @@
   - type: StationLimitedNetwork
   - type: StaticPrice
     price: 500
-  - type: Tag
-    tags:
-    - HighRiskItem
-  - type: StealTarget
-    stealGroup: HandheldCrewMonitor
+# Harmony Change Start - Gives Handheld Crew Monitor to Paramedic instead of CMO
+  # - type: Tag
+  #   tags:
+  #   - HighRiskItem
+  # - type: StealTarget
+  #   stealGroup: HandheldCrewMonitor
+# Harmony Change End
 
 - type: entity
   id: HandheldCrewMonitorEmpty

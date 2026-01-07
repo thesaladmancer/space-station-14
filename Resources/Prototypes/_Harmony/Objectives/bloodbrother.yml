@@ -92,8 +92,8 @@
   id: BloodBrotherCMOHyposprayStealObjective
 
 - type: entity
-  parent: [BaseBloodBrotherObjective, CMOCrewMonitorStealObjective]
-  id: BloodBrotherCMOCrewMonitorStealObjective
+  parent: [BaseBloodBrotherObjective, CMOGogglesStealObjective]
+  id: BloodBrotherCMOGogglesStealObjective
 
 ## rd
 

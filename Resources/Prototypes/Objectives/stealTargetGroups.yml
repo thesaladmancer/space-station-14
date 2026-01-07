@@ -7,12 +7,14 @@
     sprite: Objects/Specific/Medical/hypospray.rsi
     state: hypo
 
-- type: stealTargetGroup
-  id: HandheldCrewMonitor
-  name: steal-target-groups-handheld-crew-monitor
-  sprite:
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
-    state: scanner
+# Harmony Change Start - Gives Handheld Crew Monitor to Paramedic instead of CMO
+# - type: stealTargetGroup
+#   id: HandheldCrewMonitor
+#   name: steal-target-groups-handheld-crew-monitor
+#   sprite:
+#     sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+#     state: scanner
+# Harmony Change End
 
 - type: stealTargetGroup
   id: ClothingOuterHardsuitRd

@@ -12,7 +12,9 @@
   weights:
     CaptainIDStealObjective: 1
     CMOHyposprayStealObjective: 1
-    CMOCrewMonitorStealObjective: 1
+# Harmony Change Start - Gives Handheld Crew Monitor to Paramedic instead of CMO
+    # CMOCrewMonitorStealObjective: 1
+# Harmony Change End
     RDHardsuitStealObjective: 1
     NukeDiskStealObjective: 1
     MagbootsStealObjective: 1
@@ -24,6 +26,7 @@
     HandTeleporterStealObjective: 0.5
     EnergyMagnumStealObjective: 0.5
     AccessConfiguratorStealObjective: 1 # Harmony Objective
+    CMOGogglesStealObjective: 1 # Harmony change
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
@@ -84,7 +87,6 @@
     WantedListCartridgeStealObjective: 1
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
     MedicalTechFabCircuitboardStealObjective: 1
-    CMOGogglesStealObjective: 1 # harmony change
     FireAxeStealObjective: 1                            #eng
     AmePartFlatpackStealObjective: 1
     ExpeditionsCircuitboardStealObjective: 1            #sup

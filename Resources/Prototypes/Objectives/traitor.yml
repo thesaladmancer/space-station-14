@@ -213,12 +213,14 @@
   - type: StealCondition
     stealGroup: Hypospray
 
-- type: entity
-  parent: BaseCMOStealObjective
-  id: CMOCrewMonitorStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: HandheldCrewMonitor
+# Harmony Change Start - Gives Handheld Crew Monitor to Paramedic instead of CMO
+# - type: entity
+#   parent: BaseCMOStealObjective
+#   id: CMOCrewMonitorStealObjective
+#   components:
+#   - type: StealCondition
+#     stealGroup: HandheldCrewMonitor
+# Harmony Change End
 
 ## rd
 

@@ -132,6 +132,9 @@
     - id: HandheldGPSBasic
     - id: MedkitFilled
       prob: 0.3
+# Harmony Change Start - Gives Handheld Crew Monitor to Paramedic instead of CMO
+    - id: HandheldCrewMonitor
+# Harmony Change End
 
 - type: entity
   parent: LockerParamedic
