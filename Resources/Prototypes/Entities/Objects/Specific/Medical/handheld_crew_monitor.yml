@@ -1,10 +1,7 @@
 - type: entity
   name: handheld crew monitor
   categories: [ DoNotMap ]
-# Harmony Change Start - Gives Handheld Crew Monitor to Paramedic instead of CMO
-  # parent: [ BaseHandheldComputer, BaseGrandTheftContraband ]
-  parent: [ BaseHandheldComputer, BaseMedicalContraband ]
-# Harmony Change End
+  parent: [ BaseHandheldComputer, BaseGrandTheftContraband ]
   # CMO-only bud, don't add more.
   id: HandheldCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors.

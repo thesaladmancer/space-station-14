@@ -224,9 +224,7 @@
     - id: ClothingHeadsetAltMedical
     - id: ClothingMaskSterile
     - id: DoorRemoteMedical
-# Harmony Change Start - Gives Handheld Crew Monitor to Paramedic instead of CMO
-    # - id: HandheldCrewMonitor
-# Harmony Change End
+    # - id: HandheldCrewMonitor # Harmony Change Start - Gives Handheld Crew Monitor to Paramedic instead of CMO
     - id: Hypospray
     - id: BoxCMOCircuitboards
     - id: MedkitFilled
