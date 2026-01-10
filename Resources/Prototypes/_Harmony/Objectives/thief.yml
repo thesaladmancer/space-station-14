@@ -11,21 +11,6 @@
   - type: NotJobRequirement
     jobs: [ Scientist ]
 
-# steal item
-
-## Medical
-
-- type: entity
-  parent: BaseThiefStealObjective
-  id: CMOGogglesStealObjective
-  components:
-  - type: NotJobRequirement
-    jobs: [ ChiefMedicalOfficer ]
-  - type: StealCondition
-    stealGroup: ClothingEyesGlassesMedical
-  - type: Objective
-    difficulty: 1
-
 ## Other
 
 - type: entity
