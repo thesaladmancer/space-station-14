@@ -11,6 +11,8 @@
   - type: NotJobRequirement
     jobs: [ Scientist ]
 
+# steal item
+
 ## Other
 
 - type: entity

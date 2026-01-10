@@ -18,6 +18,17 @@
 
 # steal
 
+- type: entity
+  parent: BaseTraitorStealObjective
+  id: CMOGogglesStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ ChiefMedicalOfficer ]
+  - type: StealCondition
+    stealGroup: ClothingEyesGlassesMedical
+  - type: Objective
+    difficulty: 1
+
 ## other
 
 - type: entity
